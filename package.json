@@ -1,9 +1,15 @@
 {
-  "name": "REST-API-Instruments",
+  "name": "rest-api-tournaments",
   "version": "1.0.0",
   "main": "index.ts",
   "type": "commonjs",
-  "repository": "git@github.com:Joliwood/REST-API-Instruments.git",
+  "scripts": {
+    "dev": "nodemon index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com:Joliwood/REST-API-Instruments.git"
+  },
   "author": "Guillaume <jolibois.contact@gmail.com>",
   "license": "MIT",
   "dependencies": {
