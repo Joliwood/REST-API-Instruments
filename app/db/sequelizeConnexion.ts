@@ -5,7 +5,7 @@ dotenv.config();
 const pgUrl = process.env.PG_URL as string;
 
 function getConnexion(): Sequelize {
-  const sek = new Sequelize(pgUrl, {
+  const sequelize = new Sequelize(pgUrl, {
     dialect: "postgres",
     define: {
       underscored: true,
@@ -13,7 +13,7 @@ function getConnexion(): Sequelize {
     logging: false,
   });
 
-  return sek;
+  return sequelize;
 }
 
 export default getConnexion;
