@@ -1,8 +1,10 @@
 const { Model, DataTypes } = require("sequelize");
+import getConnexion from "../db/sequelizeConnexion";
 
-const getConnexion = require("../db/sequelizeConnexion");
-
-class ClubHasSponsor extends Model {}
+class ClubHasSponsor extends Model {
+  public club_sponsor_id!: number;
+  public sponsor_id!: number;
+}
 
 ClubHasSponsor.init(
   {
@@ -16,4 +18,4 @@ ClubHasSponsor.init(
   }
 );
 
-module.exports = ClubHasSponsor;
+export default ClubHasSponsor;

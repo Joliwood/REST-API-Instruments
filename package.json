@@ -2,6 +2,7 @@
   "name": "REST-API-Instruments",
   "version": "1.0.0",
   "main": "index.ts",
+  "type": "commonjs",
   "repository": "git@github.com:Joliwood/REST-API-Instruments.git",
   "author": "Guillaume <jolibois.contact@gmail.com>",
   "license": "MIT",
@@ -12,6 +13,8 @@
     "sequelize": "^6.32.1"
   },
   "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@types/node": "^20.3.1",
     "nodemon": "^2.0.22",
     "ts-node": "^10.9.1",
     "typescript": "^5.1.3"

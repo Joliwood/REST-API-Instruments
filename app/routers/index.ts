@@ -1,11 +1,12 @@
-const tournamentController = require("../controllers/tournamentController");
+import tournamentController from "../controllers/tournamentController";
+import { Router, Request, Response } from "express";
 
-export const router = require("express").Router();
+const router = Router();
 
-router.get("/", (req: any, res: any) => {
+router.get("/", (req: Request, res: Response) => {
   res.send("Hello from oKanban API");
 });
 
 router.get("/tournaments", tournamentController.getAll);
 
-module.exports = router;
+export default router;

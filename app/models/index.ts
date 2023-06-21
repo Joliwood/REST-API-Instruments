@@ -1,8 +1,8 @@
-const Tournament = require("./tournament");
-const Sponsor = require("./sponsor");
-const Sport = require("./sport");
-const Club = require("./club");
-const Level = require("./level");
+import Tournament from "./tournament";
+import Sponsor from "./sponsor";
+import Sport from "./sport";
+import Club from "./club";
+import Level from "./level";
 
 // Sequelize:
 // 0,1 = hasOne
@@ -60,10 +60,4 @@ Sport.hasMany(Tournament, {
   as: "tournament",
 });
 
-module.exports = {
-  Tournament,
-  Sponsor,
-  Sport,
-  Club,
-  Level,
-};
+export { Tournament, Sponsor, Sport, Club, Level };
