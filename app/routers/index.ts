@@ -1,3 +1,4 @@
+import sportsController from "../controllers/sportsController";
 import tournamentController from "../controllers/tournamentController";
 import { Router, Request, Response } from "express";
 
@@ -10,5 +11,9 @@ router.get("/", (req: Request, res: Response) => {
 });
 
 router.get("/tournaments", tournamentController.getAll);
+
+router.get("/tournament/:id", tournamentController.getOne);
+
+router.get("/sports", sportsController.getAll);
 
 export default router;

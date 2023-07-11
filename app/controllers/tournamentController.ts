@@ -1,21 +1,52 @@
 import { Tournament } from "../models";
+import { Request, Response } from 'express';
 
 const tournamentController = {
-  async getAll(req: any, res: any) {
+  async getAll(_: Request, res: Response): Promise<void> {
+
     try {
-      const tournament = await Tournament.findAll({
+      const tournament: Tournament[] = await Tournament.findAll({
         include: { all: true, nested: true },
       });
 
       res.json(tournament);
+
     } catch (error) {
+
+      console.error(error);
+
       if (error instanceof Error) {
-        console.log(error.message);
-        console.log(error.stack);
+        res.status(500).json({
+          message: 'Erreur interne 500',
+          error: error.message
+        });
       }
-      res.status(500).send("Il y a une erreur 500 !");
     }
   },
+
+  async getOne(req: Request, res: Response): Promise<void> {
+
+    const id: string = req.params.id;
+
+    try {
+
+      const tournament = await Tournament.findByPk(id, {
+        include: { all: true, nested: true },
+      });
+      res.json(tournament);
+
+    } catch (error) {
+
+      console.error(error);
+
+      if (error instanceof Error) {
+        res.status(500).json({
+          message: 'Erreur interne 500',
+          error: error.message
+        });
+      }
+    }
+  }
 };
 
 export default tournamentController;
