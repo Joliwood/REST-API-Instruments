@@ -4,7 +4,9 @@
   "main": "index.ts",
   "type": "commonjs",
   "scripts": {
-    "dev": "nodemon index.ts"
+    "dev": "nodemon index.ts",
+    "build": "tsc",
+    "vercel-build": "echo hello"
   },
   "repository": {
     "type": "git",
