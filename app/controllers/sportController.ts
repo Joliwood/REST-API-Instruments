@@ -1,20 +1,20 @@
 import { Sport } from "../models";
 import { Request, Response } from 'express';
 
-const sportsController = {
-    async getAll(_: Request, res: Response): Promise<void> {
+const sportController = {
+    async getAll(_: Request, res: Response): Promise<Object | undefined> {
 
         try {
             const sport: Sport[] = await Sport.findAll();
     
             res.header('Content-Type', 'application/json');
-            res.json(sport);
+            return res.json(sport);
             
         } catch (error) {
 
           console.error(error);
           if (error instanceof Error) {
-            res.status(500).json({
+            return res.status(500).json({
               message: 'Erreur interne 500',
               error: error.message
             });
@@ -23,4 +23,4 @@ const sportsController = {
       },
 };
 
-export default sportsController;
+export default sportController;
