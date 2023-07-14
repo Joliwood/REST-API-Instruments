@@ -2,8 +2,18 @@ import sportsController from "../controllers/sportController";
 import tournamentController from "../controllers/tournamentController";
 import clubController from "../controllers/clubController";
 import { Router, Request, Response } from "express";
+import { handleErrors } from "../middlewares/errorMiddleware"
+import { notFoundHandler } from "../middlewares/routeMiddleware";
+const bodyParser = require('body-parser')
 
 const router = Router();
+
+router.use(bodyParser.json())
+router.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+)
 
 router.get("/", (_: Request, res: Response) => {
   res.send(
@@ -12,11 +22,16 @@ router.get("/", (_: Request, res: Response) => {
 });
 
 router.get("/tournaments", tournamentController.getAll);
-
 router.get("/tournament/:id", tournamentController.getOne);
+
+router.get("/create", tournamentController.createGet);
+router.post("/create", tournamentController.create);
 
 router.get("/sports", sportsController.getAll);
 
 router.get("/clubs", clubController.getAll);
+
+router.use(handleErrors);
+router.use(notFoundHandler);
 
 export default router;
