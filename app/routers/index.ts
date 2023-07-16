@@ -24,8 +24,10 @@ router.get("/", (_: Request, res: Response) => {
 router.get("/tournaments", tournamentController.getAll);
 router.get("/tournament/:id", tournamentController.getOne);
 
-router.get("/create", tournamentController.createGet);
-router.post("/create", tournamentController.create);
+router.get("/createtournament", tournamentController.createGet);
+router.post("/createtournament", tournamentController.create);
+
+router.delete("/deletetournament/:id", tournamentController.delete);
 
 router.get("/sports", sportsController.getAll);
 

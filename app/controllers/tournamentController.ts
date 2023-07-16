@@ -52,35 +52,33 @@ const tournamentController = {
 
   },
 
-  // create : We have to use req.body to get clubs we want to put in the tournament
   async create(req: Request, res: Response) {
-    // const { levelName } = req.body;
-    const levelName = req.query.name;
+    const { name, sport } = req.query;
     console.log("you are in the creation tournament processus")
     
     try {
 
       //! 1. Validation of datas
-      if (!levelName) {
+      if (!name) {
         return res
           .status(400)
           .json({ message: "You didn't fill in the name" });
       }
-      if (typeof levelName !== "string") {
+      if (typeof name !== "string") {
         return res
           .status(400)
           .json({ message: "Invalid type: name should be a string" });
       }
 
       //! 2. Creation of the ressource
-      const newLevel = await Level.create({
-        name: levelName,
-        // sport_id: 2,
+      const newTournament = await Tournament.create({
+        name: name,
+        sport_id: sport,
       });
 
       //! 3. Client return
       // const tournament = await Tournament.findByPk
-      return res.status(201).json(newLevel);
+      return res.status(201).json(newTournament);
 
     } catch (error) {
       console.error(error);
@@ -95,7 +93,7 @@ const tournamentController = {
   },
 
   async createGet(_: Request, res: Response) {
-    
+
     try {
       
       res.send("To create a tournament, you have to send to the REST API an HTTP POST method");
@@ -117,6 +115,51 @@ const tournamentController = {
   // update : We can update only if the tournament had been created in the last 5 minutes, we also can only add clubs to simplify the function
 
   // delete : Again, it is possible to delete a tournament only if it had been created in the last 5 minutes
+
+  async delete(req: Request, res: Response) {
+    const id: number = parseInt(req.params.id, 10);
+    
+    try {
+      const tournament: Tournament | null | any = await Tournament.findByPk(id);
+
+      const dateInSec = Date.now();
+      const tournamentDateInSec = tournament.createdAt.getTime();
+      const differenceInMinutes = Math.abs(Math.floor((tournamentDateInSec - dateInSec) / (1000 * 60)));
+
+      //! 1. Delete resource + check
+      if (differenceInMinutes <= 5) {
+        const suppressedList = await Tournament.destroy({
+          where: {
+            id: id,
+          },
+        });
+
+        // The destroy method returns the number of rows deleted from the DB
+        // If it returns 0, it has not found the list to delete ! => 404
+        if (suppressedList === 0) {
+          return res
+            .status(404)
+            .json({ message: "Tournament not found. Please verify the provided id" });
+          }
+          
+        //! 2. Back to client
+        return res.status(200).json({ message: `The tournament with the id of ${id} has been successfully deleted` });
+        
+      } else {
+        return res.send("You cannot delete a tournament that was created more than 5 minutes ago.");
+      } 
+
+    } catch (error) {
+      console.error(error);
+      if (error instanceof Error) {
+        return res.status(500).json({
+          message: 'Erreur interne 500',
+          error: error.message
+        });
+      }
+    }
+
+  },
 
 };
 
