@@ -29,6 +29,8 @@ router.post("/createtournament", tournamentController.create);
 
 router.delete("/deletetournament/:id", tournamentController.delete);
 
+router.patch("/modifytournament/:id/:newname", tournamentController.modify);
+
 router.get("/sports", sportsController.getAll);
 
 router.get("/clubs", clubController.getAll);

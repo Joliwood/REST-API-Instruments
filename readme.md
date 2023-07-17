@@ -8,6 +8,12 @@
 
 <p align="center">This REST API is hosted by Render.com, you can check the API with all url disponibles to fetch on your applications : </p>
 
-`https://rest-api-tournaments.onrender.com/tournaments` <a href="https://rest-api-tournaments.onrender.com/tournaments" target="blank">-> Get all Tournaments</a>
+GET : `https://rest-api-tournaments.onrender.com/tournaments` <a href="https://rest-api-tournaments.onrender.com/tournaments" target="blank">-> Get all tournaments</a>
 
-For this moment, you can only get all tournaments, but I will add more routes in the future.
+GET : `https://rest-api-tournaments.onrender.com/tournament/:id` <a href="https://rest-api-tournaments.onrender.com/tournament/:id" target="blank">-> Get a specific tournament</a>
+
+POST : `https://rest-api-tournaments.onrender.com/createtournament` <a href="https://rest-api-tournaments.onrender.com/createtournament" target="blank">-> Create a new tournament</a>
+
+DELETE : `https://rest-api-tournaments.onrender.com/deletetournament/:id` <a href="https://rest-api-tournaments.onrender.com/deletetournament/:id" target="blank">-> Delete a tournament (has to be create in the last 5 minutes)</a>
+
+PATCH : `https://rest-api-tournaments.onrender.com/modifytournament/:id/:newname` <a href="https://rest-api-tournaments.onrender.com/modifytournament/:id/:newname" target="blank">-> Modify a specific tournament (has to be create in the last 5 minutes)</a>

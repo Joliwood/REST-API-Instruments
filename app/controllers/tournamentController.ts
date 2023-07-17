@@ -1,4 +1,4 @@
-import { Tournament, Level } from "../models";
+import { Tournament } from "../models";
 import { Request, Response } from 'express';
 
 const tournamentController = {
@@ -110,11 +110,58 @@ const tournamentController = {
 
   },
 
-  
+  async modify(req: Request, res: Response) {
+    const id: number = parseInt(req.params.id, 10);
+    const newName: string = req.params.newname;
 
-  // update : We can update only if the tournament had been created in the last 5 minutes, we also can only add clubs to simplify the function
+    try {
+      const tournament: Tournament | null | any = await Tournament.findByPk(id);
+      const dateInSec = Date.now();
+      const tournamentDateInSec = tournament.createdAt.getTime();
+      const differenceInMinutes = Math.abs(Math.floor((tournamentDateInSec - dateInSec) / (1000 * 60)));
+      
+      //! 1. Validation of datas
+      if (differenceInMinutes <= 5) {
+        if (!tournament) {
+          return res
+            .status(404)
+            .json({ message: "Tournament not found. Please verify the provided id" });
+        }
+        if (
+          typeof newName !== "undefined" &&
+          typeof newName !== "string"
+        ) {
+          return res.status(400).json({
+            message: "Invalid body parameter 'newname'. Should provide a string.",
+          });
+        }
+        if (id !== undefined && isNaN(id)) {
+          return res.status(400).json({
+            message:
+              "Invalid body parameter 'id'. Should provide a number.",
+          });
+        }
 
-  // delete : Again, it is possible to delete a tournament only if it had been created in the last 5 minutes
+        //! 2. Update of the ressource
+        await tournament.update({
+          name: newName
+        });
+
+        //! 3. Back to client
+          return res.json(tournament);
+      } else {
+        return res.send("You cannot modify a tournament that was created more than 5 minutes ago.");
+      } 
+    } catch (error) {
+      console.error(error);
+      if (error instanceof Error) {
+        return res.status(500).json({
+          message: 'Erreur interne 500',
+          error: error.message
+        });
+      }
+    }
+  },
 
   async delete(req: Request, res: Response) {
     const id: number = parseInt(req.params.id, 10);
