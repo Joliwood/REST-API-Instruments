@@ -1,19 +1,29 @@
-# <p align="center">Welcome to REST API Tournaments !</p>
+# Welcome to REST API Tournaments
 
-## <p align="center">Context</p>
+## Context
 
-<p align="center">A REST API that is working with typescript. The database is the same that the project called "MVC-Architecture". It is also following this architecture</p>
+A REST API that is working with typescript. The database is the same that the project called "MVC-Architecture". It is also following this architecture
 
-## <p align="center">What is it for ?</p>
+## What is it for ?
 
-<p align="center">This REST API is hosted by Render.com, you can check the API with all url disponibles to fetch on your applications : </p>
+This REST API is hosted by Railway.app and the PSQL DB hosted on neon.tech. You can check the API with all url disponibles to fetch on your applications :
 
-GET : `https://rest-api-tournaments.onrender.com/tournaments` <a href="https://rest-api-tournaments.onrender.com/tournaments" target="blank">-> Get all tournaments</a>
+GET : `https://rest-api-tournaments.up.railway.app/tournaments` -> [Get all tournaments](https://rest-api-tournaments.up.railway.app/tournaments)
 
-GET : `https://rest-api-tournaments.onrender.com/tournament/:id` <a href="https://rest-api-tournaments.onrender.com/tournament/:id" target="blank">-> Get a specific tournament</a>
+GET : `https://rest-api-tournaments.up.railway.app/tournament/:id` -> [Get a specific tournament](https://rest-api-tournaments.up.railway.app/tournament/:id)
 
-POST : `https://rest-api-tournaments.onrender.com/createtournament` <a href="https://rest-api-tournaments.onrender.com/createtournament" target="blank">-> Create a new tournament</a>
+POST : `https://rest-api-tournaments.up.railway.app/createtournament` -> [Create a new tournament](https://rest-api-tournaments.up.railway.app/createtournament)
 
-DELETE : `https://rest-api-tournaments.onrender.com/deletetournament/:id` <a href="https://rest-api-tournaments.onrender.com/deletetournament/:id" target="blank">-> Delete a tournament (has to be create in the last 5 minutes)</a>
+DELETE : `https://rest-api-tournaments.up.railway.app/deletetournament/:id` -> [Delete a tournament](https://rest-api-tournaments.up.railway.app/deletetournament/:id)
 
-PATCH : `https://rest-api-tournaments.onrender.com/modifytournament/:id/:newname` <a href="https://rest-api-tournaments.onrender.com/modifytournament/:id/:newname" target="blank">-> Modify a specific tournament (has to be create in the last 5 minutes)</a>
+PATCH : `https://rest-api-tournaments.up.railway.app/modifytournament/:id/:newname` -> [Modify a specific tournament](https://rest-api-tournaments.up.railway.app/modifytournament/:id/:newname) (has to be create in the last 5 minutes)
+
+## How to read commits in this project
+
+:zap: = Minor correction / debug \
+:construction: = Work in progress \
+:card_file_box: = Datas or contents updated \
+:hammer: = New functionnality / component \
+:memo: = Readme / Code comments / Documentations \
+:rotating_light: = Security \
+:sparkles: = Clean code
